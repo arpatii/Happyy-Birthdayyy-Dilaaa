@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happyy birthdayyy</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box
+
+}
+
+body{
+    overflow:hidden;
+    font-family:Arial,sans-serif
+
+}
+
+#bgVideo{
+    position:fixed;
+    inset:0;width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2
+
+}
+
+.orbit{
+    position:absolute;
+    width:65px;height:65px;
+    object-fit:cover;
+    border-radius:18px;
+    cursor:pointer;
+    user-select:none;
+    transition:filter .2s, box-shadow .2s;
+    box-shadow:0 0 12px rgba(0,180,255,.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.orbit:hover{
+    filter:brightness(1.15);
+    box-shadow:0 0 25px rgba(0,180,255,.8);
+
+}
+
+.orbit img{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+    border-radius:18px;
+
+}
+
+.orbit span{
+    margin-top:8px;
+    color:#dff6ff;
+    font-size:15px;
+    font-weight:bold;
+    text-shadow:
+        0 0 8px #5fdcff,
+        0 0 15px #5fdcff;
+    white-space:nowrap;
+
+}
+
+.popup{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(10px);
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:.35s;
+    z-index:9999;
+
+}
+
+.popup.show{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+}
+
+.popup.show .popupLtBox{
+    transform:scale(1);
+
+}
+
+body.popup-open .orbit{
+    opacity:.35;
+    transition:.35s;
+
+}
+
+.popupLtBox{
+    position:relative;
+    width:450px;
+    max-width:90vw;
+
+}
+
+.popupLtBox img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:20px;
+
+}
+
+#letterPopup .content{
+    position:absolute;
+    top:50px;
+    left:95px;
+    right:95px;
+    bottom:150px;
+
+}
+
+.clsLtBtn{
+    position:fixed;
+    top:50px;
+    left:420px;
+    width:60px;
+    height:60px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    z-index:10000;
+
+}
+
+.clsLtBtn img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+
+}
+
+.clsLtBtn img:hover{
+    transform:scale(1.1);
+    background:rgba(255,255,255,.25);
+
+}
+
+#letterPopup .clsLtBtn img{
+    opacity:0;
+    pointer-events:none;
+
+}
+
+#letterPopup.show .clsLtBtn img{
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+#letterPopup h1{
+    font-family:"Allura", cursive;
+    font-size:35px;
+    font-weight:400;
+    color:#40658f;
+    text-align:center;
+    margin-bottom:5px;
+
+}
+
+#letterText{
+    position:absolute;
+    top:110px;
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    overflow-y:auto;
+
+    -ms-overflow-style:none;   
+    scrollbar-width:none;      
+}
+
+#letterText::-webkit-scrollbar{
+    display:none;            
+}
+
+.greeting{
+    font-family:"Cormorant Garamond", serif;
+    font-size:23px;
+    font-style: italic;
+    font-weight:600;
+    color:#404040;
+
+}
+
+.bodyLt{
+    font-family:"Cormorant Garamond", serif;
+    font-size:18px;
+    font-style: italic;
+    line-height:1.8;
+    color:#4a4a4a;
+
+}
+
+.signature{
+    font-family:"Allura", cursive;
+    font-size:34px;
+    color:#40658f;
+    text-align:right;
+
+}
+
+.wishScroll{
+
+    width:100%;
+    height:100%;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+}
+
+.wishScroll::-webkit-scrollbar{
+    height:20px;
+}
+
+.wishScroll::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.15);
+    border-radius:15px;
+}
+
+.wishScroll::-webkit-scrollbar-thumb{
+    background:linear-gradient(
+        90deg,
+        #dff8ff,
+        #9ddfff,
+        #c8f0ff
+    );
+    border-radius:20px;
+    border:2px solid rgba(255,255,255,.15);
+}
+
+.wishScroll::-webkit-scrollbar-thumb:hover{
+    background:linear-gradient(
+        90deg,
+        #cfefff,
+        #9fd9ff,
+        #8ab8ff,    
+        #dff8ff
+    );
+}
+
+.wishScroll{
+    scrollbar-color:#51bef9 rgba(255,255,255,.15);
+    scrollbar-width:thin;
+}
+
+.wishContainer{
+    position:relative;
+    width:1280px;
+    height:100%;
+
+    padding:0 60px;
+}
+
+.wishCard{
+    position:absolute;
+    width:250px;
+    height:50px;
+    border-radius:18px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    cursor:pointer;
+    overflow:hidden;
+    transition:
+        height .45s,
+        transform .35s,
+        box-shadow .35s;
+    box-shadow:0 0 10px rgba(255,255,255,.15);
+
+}
+
+.wishTitle{
+    height:65px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:20px;
+    font-family:"Cormorant Garamond", serif;
+
+}
+
+.wishContent{
+    opacity:0;
+    padding:15px;
+    color:white;
+
+    height:calc(100% - 65px);
+    box-sizing:border-box;
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    transition:.3s;
+
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+}
+
+.wishContent::-webkit-scrollbar{
+    display:none;
+}
+
+.wishCard.open{
+    height:250px;
+    z-index:999;
+}
+
+.wishCard.open .wishContent{
+    opacity:1;
+
+}
+
+.wishCard:nth-child(1){
+    top: 100px;
+    left:70px;
+
+}
+
+.wishCard:nth-child(2){
+    top: 100px;
+    left: 500px;
+
+}
+
+.wishCard:nth-child(3){
+    top:100px;
+    left:930px;
+
+}
+
+.wishCard:nth-child(4){
+    bottom:100px;
+    left:280px;
+
+}
+
+.wishCard:nth-child(5){
+    bottom:100px;
+    left:720px;
+
+}
+
+.top{
+    transform-origin:top;
+
+}
+
+.bottom{
+    transform-origin:bottom;
+
+}
+
+.wishCard:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 20px rgba(255,255,255,.35);
+
+}
+
+.popupWishBox{
+
+    position:relative;
+
+    width:min(1100px,95vw);
+
+    overflow:hidden;
+
+    border-radius:40px;
+
+}
+
+.popupWishBox img{
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:20px;
+}
+
+#wishPopup .content{
+    position:absolute;
+    top:50px;
+    left:80px;
+    right:80px;
+    bottom:50px;
+
+}
+
+.clsWishBtn{
+    position:fixed;
+    top:75px;
+    left:120px;
+    width:60px;
+    height:60px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    z-index:10000;
+
+}
+
+.clsWishBtn img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+
+}
+
+.clsWishBtn img:hover{
+    transform:scale(1.1);
+    background:rgba(255,255,255,.25);
+
+}
+
+#wishPopup .clsWishBtn img{
+    opacity:0;
+    pointer-events:none;
+
+}
+
+#wishPopup.show .clsWishBtn img{
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+#memoPopup .content{
+
+    position:absolute;
+
+    top:80px;
+    left:80px;
+    right:80px;
+    bottom:80px;
+
+}
+
+.popupMemoBox{
+
+    position:relative;
+
+    width:min(1100px,95vw);
+
+    overflow:hidden;
+
+    border-radius:40px;
+
+}
+
+.popupMemoBox > img{
+    width:100%;
+    display:block;
+}
+
+.photo{
+    position:absolute;
+}
+
+.photoImg{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    border-radius:2px;
+}
+
+.left{
+    top:86px;
+    left:152px;
+
+    width:155px;
+    height:170px;
+
+    transform:rotate(-5.4deg);
+}
+
+.center{
+    top:53px;
+    left:373px;
+
+    width:190px;
+    height:200px;
+}
+
+.right{
+    top:86px;
+    right:154px;
+
+    width:158px;
+    height:170px;
+
+    transform:rotate(6.2deg);
+}
+
+.clsMemoBtn{
+    position:fixed;
+    top:70px;
+    left:135px;
+    width:60px;
+    height:60px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    z-index:10000;
+
+}
+
+.clsMemoBtn img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+
+}
+
+.clsMemoBtn img:hover{
+    transform:scale(1.1);
+    background:rgba(255,255,255,.25);
+
+}
+
+#memoPopup .clsMemoBtn img{
+    opacity:0;
+    pointer-events:none;
+
+}
+
+#memoPopup.show .clsMemoBtn img{
+    opacity:1;
+    pointer-events:auto;
+
+}
+
+#memoryCaption{
+    position:absolute;
+
+    left:50%;
+    bottom:0px;
+    transform:translateX(-50%);
+
+    width:600px;
+    text-align:center;
+
+    color:white;
+}
+
+#memoryTitle{
+    font-size:30px;
+    margin-bottom:5px;
+    font-family:"Cormorant Garamond", serif;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom:105px;
+    text-align: center;
+}
+
+#memoryDesc{
+    font-size:18px;
+    line-height:1.7;
+    font-family:"Cormorant Garamond", serif;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom:-10px;
+    text-align: center;
+}
+
+.viewerBox{
+    max-width:85vw;
+    max-height:85vh;
+}
+
+#viewerImg{
+    max-width:100%;
+    max-height:85vh;
+    border-radius:18px;
+    box-shadow:0 0 40px rgba(0,0,0,.5);
+}
+
+#closeViewer{
+    position:fixed;
+    top:40px;
+    right:40px;
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:28px;
+}
+
+#prev,
+#next{
+
+    position:absolute;
+
+    top:50%;
+    transform:translateY(-50%);
+
+    width:60px;
+    height:60px;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(10px);
+
+    color:white;
+    font-size:35px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    z-index:20;
+
+}
+
+#prev{
+    left:35px;
+}
+
+#next{
+    right:35px;
+}
+
+#prev:hover,
+#next:hover{
+
+    transform:translateY(-50%) scale(1.08);
+
+    background:rgba(255,255,255,.3);
+
+}
+
+.popupLockBox{
+    position:relative;
+    width:420px;
+    max-width:90vw;
+}
+
+.popupLockBox img{
+    width:100%;
+    display:block;
+    border-radius: 20px;
+}
+
+#lockPopup .content{
+    position:absolute;
+
+    top:100px;
+    left:40px;
+    right:40px;
+    bottom:35px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.lockTitle{
+    font-family: "Cormorant Garamond", serif;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.lockText{
+    color:#d8d9ff;
+    font-size:17px;
+    line-height:1.6;
+}
+
+.lockList{
+    width:100%;
+    margin-bottom:22px;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(5px);
+}
+
+.lockItem{
+    display:flex;
+    justify-content:space-between;
+
+    padding:10px 18px;
+    margin:8px 0;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+}
+
+.lockClose{
+    padding:12px 35px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #7b5dff,
+        #9d7cff
+);
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.lockClose:hover{
+    transform:translateY(-2px) scale(1.03);
+    box-shadow:0 0 20px rgba(155,120,255,.4);
+}
+
+.popupLockBox{
+    transform:scale(.8);
+    opacity:0;
+    transition:.35s;
+}
+
+#lockPopup.show .popupLockBox{
+    transform:scale(1);
+    opacity:1;
+}
+
+</style>
+</head>
+<body>
+
+<video id="bgVideo" autoplay muted loop playsinline>
+<source src="Menu.mp4" type="video/mp4">
+</video>
+
+<div class="orbit" id="letter">
+
+    <img src="bt letter.jpeg">
+
+    <span>Letter</span>
+
+</div>
+
+<div class="orbit" id="wish">
+
+    <img src="bt wish.jpeg">
+
+    <span>Wishes</span>
+
+</div>
+
+<div class="orbit" id="photos">
+
+    <img src="bt memories.jpeg">
+
+    <span>Memories</span>
+
+</div>
+
+<div class="orbit" id="bouquet">
+
+    <img src="bt bouquet.jpeg">
+
+    <span>Bouquet</span>
+
+</div>
+
+<div class="orbit" id="last">
+
+    <img src="bt last.jpeg">
+
+    <span>Last</span>
+
+</div>
+
+<div id="letterPopup" class="popup">
+    <button class="clsLtBtn"
+    onclick="closePopup('letterPopup')">
+        <img src="x bt.jpeg">
+    </button>
+
+    <div class="popupLtBox">
+        <img src="bg letter.jpeg">
+        <div class="content">
+
+    <div id="letterText">
+        <h1>For you,<br>someone special</h1>
+
+        <p class="greeting">
+            Dear Dila,
+        </p>
+        <p class="bodyLt">
+            ga terasa yaa?? hehee, udah umur 18 ajaa nihh, kamuuu kuatt bangett udahh bertahan sampe sekarangg.<br>
+            selamattt yaawww, akuu cumaa bisaa bilangg selamaatt ulangg tahunnn, panjangg umurrr, sehattt selaluuu.<br>
+            maaafff kalauu belumm bisa ngasih somethingg yang mungkin kamu harapkan diulang tahun kamuu, maaff jugaa kalau semisall aku ada kurangnyaa selamaa kamu samaa akuu, hehee.<br>
+            hummm, kamuu tauu gaa sihhh?? kamuu tuhh spesialll bangett.<br>
+            jujurrr, kamuu tuu selaluuu bisaa mewarnaiii harii orangg orangg sekitarmuuu, salahh satunya akuu,<br>
+            kamuuu udahh ngajarinn akuu, apa itu cinta yang tumbuh dan berkembangg.<br>
+            kamuu ngajarin akuu banyakk halll baruuu, meheheee<br>
+            oh iyaaa, selainnn ngucapinn selamaatt ulangg tahun aku jugaa mau bilang kalauuu,<br>
+            akuu bersyukurrr bangett ketemuu sama kamuu,<br>
+            makasiiihhh yaaa udahh mauu jadiii bagiannn hidupkuuu.<br>
+            apapunnn yang terjadiii, akuu disiniii,<br>
+            kalauuu kamu membutuhkannkuu, akuu jugaa akan berada disinii,<br>
+            kamuu bolehh mintaa tolonggg apapunnn dengankuu, jangan takutt itu akann merepotkann kuuu,<br>
+            kamuu bolehh ceritaa ke akuuu, jangannn takutt ituu akan membuatkuu merasaaa risihhh,<br>
+            malahannn kalauu kamuuu gituu, akuu seneengg bangettt, rasanyaa menjadiii bergunaaa bagii seseorangg yang spesiaalll.<br>
+            sebenarnyaa masihhh banyakk yang ingin kukatakannn tapii, sudahh terlalu panjangg, heheee.<br>
+            akuu harapp kamuu sukaa dehh samaa hadiahkuu yang ga seberapa inii<br>
+        </p>
+        <p class="signature">
+            With love,<br>
+            Arya<br>
+        </p>
+    </div>
+    </div>
+</div>
+</div>
+
+<div id="wishPopup" class="popup">
+
+    <div class="popupWishBox">
+
+        <img src="bg wish.jpeg">
+
+        <div class="content">
+
+            <button class="clsWishBtn"
+                    onclick="closePopup('wishPopup')">
+                <img src="x bt.jpeg">
+            </button>
+            <div class="wishScroll">
+
+    <div class="wishContainer">
+        <div class="wishCard top">
+            <div class="wishTitle">little moments</div>
+                <div class="wishContent">
+                    akuuu harappp, di tengah sibuknya hari-harimu nanti, kamu gaaa bakall lupaa menikmati hal-hal kecil yang bisaaaa bikinnn kamu tersenyummmm. entah ituu secangkir minuman favoritmuuuu, langit sore yang indahhh, lagu yang kamu sukaaa, hawa dingin darii cuaca hujannn, atau bahkann sekedar tawa sederhana bersama orang-orang tersayang, heheee. semoga kebahagiaan selalu menemukanmu, bahkan dalam hal-hal yang paling sederhanaaa.
+                </div>
+            </div>
+        
+
+        <div class="wishCard top">
+            <div class="wishTitle">stay as you are</div>
+                <div class="wishContent">
+                    akuuu harapp kamu akan tetap menjadi dirimu sendiri. dirimu yang lucuuuu, dirimu yang hangatttt, dirimu yang selalu bisaa untuk membawa energi padaa orang-orang di sekitarmuuu. jangan pernah merasa harus menjadi orang lainnn, apalagii kalauu hanya untuk memenuhi harapan seseorangg. tetaplah menjadi dilaaa yang aku kenalll. dann, meskipunn berubahh, berubahlahh karenaa keinginann dan demi kebaikann dirimuu sendirii.
+                </div>
+            </div>
+        
+
+        <div class="wishCard top">
+            <div class="wishTitle">last hopes</div>
+                <div class="wishContent">
+                    kuharapp... selamanya akan beginii, hehee.., yaahhh tidak bisaa memaksaa takdiirrr, intinyaaa, jalaniilahhh harimuuu, akuu akannn beradaa disiniii melihatmuu sekaligusss memperbaiki hidupkuu sendirii.
+                </div>
+            </div>
+        
+
+        <div class="wishCard bottom">
+            <div class="wishTitle">may every step bloom</div>
+                <div class="wishContent">
+                    kuharappp perjalananmu ke depannyaaaa akan dipenuhi banyakkkk bangett hal-halll baikkkk. semogaaaa setiap langkahmu dipermudahhh, setiap cobaannn bisa kamu lewati dengan kuattt, dannn setiap harapannn yang kamu simpan perlahannnn menjadi kenyataannnnn. teruslah melangkahhh, karenaaa meskipunn aku jauhh, akuu akannn selalu mendoakan yang terbaik untukmuuu.
+                </div>
+            </div>
+    
+        <div class="wishCard bottom">
+            <div class="wishTitle">be kind to your self</div>
+                <div class="wishContent">
+                    aku jugaa berharappp kamu gaaa terlaluuu kerass sama dirimu sendiriii. gaaa apa-apa kalau suatu hariii nantiii kamu merasa lelahhh, gagallll, atau bahkann butuhh waktu untuk beristirahatttt. ingattt, kamuuu gaa harus selalu kuattt setiap saatttt. beri dirimu sendirii kesempatan untuk bernapassss, karenaaa kamu juga pantasss mendapatkann kasih sayangggg, bahkan dari dirimu sendiri, meheheee.
+                    
+                </div>
+            </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="memoPopup" class="popup">
+
+    <div class="popupMemoBox">
+
+        <img src="bg memories.jpeg">
+
+        <div class="content">
+
+            <button class="clsMemoBtn" onclick="closePopup('memoPopup')">
+                <img src="x bt.jpeg">
+            </button>
+
+            <div class="photo left">
+                <img class="photoImg" id="imgLeft">
+            </div>
+
+            <div class="photo center">
+                <img class="photoImg" id="imgCenter">
+            </div>
+
+            <div class="photo right">
+                <img class="photoImg" id="imgRight">
+            </div>
+
+            <div id="memoryCaption">
+                <h2 id="memoryTitle"></h2>
+                <p id="memoryDesc"></p>
+            </div>
+
+            <button id="prev">❮</button>
+            <button id="next">❯</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="photoViewer" class="popup">
+    <div class="viewerBox">
+        <img id="viewerImg">
+    </div>
+
+    <button id="closeViewer">✕</button>
+</div>
+
+<div id="lockPopup" class="popup">
+
+    <div class="popupLockBox">
+
+        <img src="bg last popup.jpeg">
+
+        <div class="content">
+
+            <h2 class="lockTitle">
+                Locked
+            </h2>
+
+            <p class="lockText">
+                Complete every page first<br>
+                before opening the final surprise 😁😁.
+            </p>
+
+            <div class="lockList">
+
+                <div class="lockItem">
+                    <span>Letter</span>
+                    <span id="stLetter"></span>
+                </div>
+
+                <div class="lockItem">
+                    <span>Wishes</span>
+                    <span id="stWish"></span>
+                </div>
+
+                <div class="lockItem">
+                    <span>Memories</span>
+                    <span id="stPhoto"></span>
+                </div>
+
+                <div class="lockItem">
+                    <span>Bouquet</span>
+                    <span id="stBouquet"></span>
+                </div>
+
+            </div>
+
+            <button class="lockClose"
+                onclick="closePopup('lockPopup')">
+                Close
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const progress = {
+    letter: sessionStorage.getItem("letter") === "true",
+    wish: sessionStorage.getItem("wish") === "true",
+    photos: sessionStorage.getItem("photos") === "true",
+    bouquet: sessionStorage.getItem("bouquet") === "true"
+
+};
+
+
+const buttons=document.querySelectorAll(".orbit");
+    let angle=0;
+        const radiusX=350;
+        const radiusY=200;
+        const speed=0.008;
+
+buttons.forEach(btn=>{
+    btn.addEventListener("mouseenter",()=>btn.dataset.hover="1");
+    btn.addEventListener("mouseleave",()=>btn.dataset.hover="0");
+
+});
+
+function animate(){
+    angle+=speed;
+    buttons.forEach((btn,index)=>{
+        const a=angle+index*(Math.PI*2/buttons.length);
+        const x=Math.cos(a)*radiusX;
+        const y=Math.sin(a)*radiusY;
+        const depth=(Math.sin(a)+1)/2;
+    let scale=0.75+depth*0.35;
+
+if(btn.dataset.hover==="1") scale+=0.12;
+    btn.style.left=`${innerWidth/2+x-btn.offsetWidth/2}px`;
+    btn.style.top=`${innerHeight/2+y-btn.offsetHeight/2}px`;
+    btn.style.transform=`scale(${scale})`;
+    btn.style.opacity=0.45+depth*0.60;
+    btn.style.zIndex=Math.floor(depth*100);
+
+});
+requestAnimationFrame(animate);
+
+}
+animate();
+
+function openPopup(id){
+    document.getElementById(id).classList.add("show");
+    document.body.classList.add("popup-open");
+
+}
+
+function closePopup(id){
+    document.getElementById(id).classList.remove("show");
+    document.body.classList.remove("popup-open");
+
+}
+
+document.getElementById("letter").onclick=()=>{
+progress.letter=true;
+sessionStorage.setItem("letter","true");
+openPopup("letterPopup");
+
+};
+
+document.getElementById("wish").onclick=()=>{
+progress.wish=true;
+sessionStorage.setItem("wish","true");
+openPopup("wishPopup");
+
+};
+
+document.getElementById("photos").onclick=()=>{
+progress.photos=true;
+sessionStorage.setItem("photos","true");
+openPopup("memoPopup");
+
+};
+
+document.getElementById("bouquet").onclick=()=>{
+progress.bouquet=true;
+sessionStorage.setItem("bouquet","true");
+location.href="Bouquet.html";
+
+};
+
+const cards = document.querySelectorAll(".wishCard");
+
+cards.forEach(card=>{
+    card.onclick=()=>{
+        const opened = card.classList.contains("open");
+        cards.forEach(c=>{
+            c.classList.remove("open");
+        });
+
+        if(!opened){
+            card.classList.add("open");
+        }
+    };
+
+});
+
+const photos = [
+
+{
+    src:"perbincangan kekuatan super.jpeg",
+    title:"Kekuatan Super",
+    desc:"ingat gaa?? dulu kamu bilang mau kekuatan super menghilangg, karena terkadang dunia terlalu berisik, bahkann sampai sekarangg kamuu terkadang masihh lakuinn ituu (setauku sii), artinyaa kamu gaa banyakk berubahh yaa, hihiii, baguslaahh"
+},
+
+{
+    src:"First photos.jpeg",
+    title:"Foto Pertama",
+    desc:"waktu itu kamu kirimin aku foto karena aku menang dalam kompetisi yang kita buat sendiri, kalau ga salah siapa yang bangun duluan dehh, hehee"
+},
+
+{
+    src:"Pap Pertama.jpeg",
+    title:"Pap Tiba tiba",
+    desc:"Waktu itu kamu lagi di rumah sepupu dan chatting sama aku, teruss tiba tiba ngirim foto ini dengan alasan 'ngerasa Syantik' hehee"
+},
+
+{
+    src:"sunrise.jpeg",
+    title:"Sunrise",
+    desc:"Kalau foto yang ini aku ga tauu detail nyaa sii, tapi kamu kirim bersamaan dengan foto pertemuan dengan teman smp kamu, jadii mungkin pagi di hari yang samaa jugaa yakk??"
+},
+
+{
+    src:"pertemuan.jpeg",
+    title:"Teman SMP",
+    desc:"Inii pas kamu sama teman teman kamu ketemuan ituu, yang bahkan foto bulan jam 11 lewat, kenangann yang jarangg jarangg tuhh, hehee"
+},
+
+{
+    src:"bocill.png",
+    title:"Bocilll",
+    desc:"hahahaa, bocill bocill, lucuu bangett, sampai kamu bilang ngerasa punya mama ke dua pas dl"
+},
+
+{
+    src:"cerita setelah dl.png",
+    title:"Cerita DL",
+    desc:"Waktu Kamu pulang dari dl kamu ceritaa panjanggg bangett ke akuu, hehee, tentang kamu ngerasa seruu, dann macam macamm"
+},
+
+{
+    src:"nyandeng.jpeg",
+    title:"Ini Lagi??",
+    desc:"Kamu ada foto foto di depan Nyendeng Lake, lucunya ada 2 yang kamu kirim, dan keduanya beda pose"
+},
+
+{
+    src:"Jalan Jalan.jpeg",
+    title:"Pertama Kali??",
+    desc:"Waktu itu kamuu diajak jalann sama tempat kamu pkl kann, dann kamu ngambil foto di depann nyandeng lake, hehee"
+},
+
+{
+    src:"dl.jpeg",
+    title:"Perahu",
+    desc:"pemandangan pas kamu dl dan naikk perahuu, airnyaa jernih bangett, pemandangannya juga baguss lagii, hehee"
+},
+
+{
+    src:"hutan.jpeg",
+    title:"Hutan",
+    desc:"kamu juga ada ngambil foto pemandangann hutann inii pas kamu dl, hutannya masii hijau dan rindangg bangett euyy"
+},
+
+{
+    src:"pemandangan.jpeg",
+    title:"Pemandangan",
+    desc:"Ini kalauu ga salah pemandangan dari tempat nginapnya kamu pas dl yakk?? pagi pagii bangun disambut pemandangann seindah inii, impiann bangett"
+},
+
+{
+    src:"kalap.jpeg",
+    title:"Kalap",
+    desc:"snackk yang kamuu siapkann untuk dl waktu ituu, hahaahaaa, pas itu kamu bilang 'emmm, kalap' "
+}
+
+
+];
+
+let current = 1;
+
+function renderPhotos(){
+
+    imgLeft.src =
+        photos[(current-1+photos.length)%photos.length].src;
+
+    imgCenter.src =
+        photos[current].src;
+
+    imgRight.src =
+        photos[(current+1)%photos.length].src;
+
+    memoryTitle.textContent =
+        photos[current].title;
+
+    memoryDesc.textContent =
+        photos[current].desc;
+
+}
+
+renderPhotos();
+
+function nextPhoto(){
+    current--;
+    if(current < 0){
+        current = photos.length - 1;
+    }
+    renderPhotos();
+}
+
+function prevPhoto(){
+    current++;
+    if(current >= photos.length){
+        current = 0;
+    }
+    renderPhotos();
+}
+
+document.addEventListener("keydown", function(e){
+
+    // cuma aktif kalau popup Memories lagi kebuka
+    if(!document.getElementById("memoPopup").classList.contains("show")) return;
+
+    if(e.key === "ArrowRight"){
+        nextPhoto();
+    }
+
+    if(e.key === "ArrowLeft"){
+        prevPhoto();
+    }
+
+});
+
+document.getElementById("next").onclick = nextPhoto;
+document.getElementById("prev").onclick = prevPhoto;
+
+const viewer=document.getElementById("photoViewer");
+const viewerImg=document.getElementById("viewerImg");
+
+document.querySelectorAll(".photoImg").forEach(img=>{
+
+    img.style.cursor="pointer";
+
+    img.onclick=()=>{
+
+        viewerImg.src=img.src;
+        openPopup("photoViewer");
+
+    };
+
+});
+
+document.getElementById("closeViewer").onclick=()=>{
+
+    closePopup("photoViewer");
+
+};
+
+viewer.onclick=(e)=>{
+
+    if(e.target===viewer)
+        closePopup("photoViewer");
+
+};
+
+document.getElementById("last").addEventListener("click", function (e) {
+
+    e.preventDefault();
+
+    if (
+        progress.letter &&
+        progress.wish &&
+        progress.photos &&
+        progress.bouquet
+    ) {
+
+        window.location.href = "last.html";
+
+    } else {
+
+        document.getElementById("stLetter").textContent =
+            progress.letter ? "✅" : "❌";
+
+        document.getElementById("stWish").textContent =
+            progress.wish ? "✅" : "❌";
+
+        document.getElementById("stPhoto").textContent =
+            progress.photos ? "✅" : "❌";
+
+        document.getElementById("stBouquet").textContent =
+            progress.bouquet ? "✅" : "❌";
+
+        openPopup("lockPopup");
+
+    }
+
+});
+</script>
+
+</body>
+</html>

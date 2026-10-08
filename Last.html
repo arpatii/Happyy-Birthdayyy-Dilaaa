@@ -1,0 +1,331 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    background:black;
+}
+
+#bg{
+    position:fixed;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    animation:zoom 35s linear forwards;
+}
+
+@keyframes zoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.08);
+    }
+
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.15);
+}
+
+.text{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:80%;
+
+    text-align:center;
+
+    color:white;
+
+    opacity:0;
+
+    transition:1.8s;
+
+    text-shadow:
+    0 0 15px rgba(255,255,255,.55);
+}
+
+.text.show{
+    opacity:1;
+}
+
+#main{
+    font-family:"Allura",cursive;
+
+    font-size:78px;
+
+    margin-bottom:20px;
+}
+
+#sub{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:32px;
+
+    line-height:1.8;
+}
+
+/* Layar hitam untuk transisi */
+
+.fade{
+    position:fixed;
+    inset:0;
+
+    background:black;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:4s;
+
+    z-index:10;
+}
+
+.fade.show{
+    opacity:1;
+}
+
+/* Video ending */
+
+#endingVideo{
+
+    position:fixed;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:black;
+
+    opacity:0;
+
+    z-index:20;
+
+    transition:opacity 2s;
+
+}
+
+#endingVideo.show{
+    opacity:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<img src="bg last.jpeg" id="bg">
+
+<div class="overlay"></div>
+
+<div class="text">
+
+    <div id="main"></div>
+
+    <div id="sub"></div>
+
+</div>
+
+<div class="fade" id="fade"></div>
+
+<audio id="music">
+
+    <source src="hbd dila.mp3" type="audio/mpeg">
+
+</audio>
+
+<!-- Video terakhir -->
+
+<video id="endingVideo" preload="auto">
+
+    <source src="910.mp4" type="video/mp4">
+
+</video>
+
+
+<script>
+
+const music = document.getElementById("music");
+
+const box = document.querySelector(".text");
+
+const title = document.getElementById("main");
+
+const sub = document.getElementById("sub");
+
+const fade = document.getElementById("fade");
+
+const endingVideo = document.getElementById("endingVideo");
+
+
+const pages = [
+
+    {
+        title:"Happy Birthday,<br>dilaaa",
+        text:"",
+        time:3600
+    },
+
+    {
+        title:"Thank you",
+        text:"for coming into my life.",
+        time:4300
+    },
+
+    {
+        title:"",
+        text:"Thank you for every smile,<br>every laugh,<br>every little moment we shared.",
+        time:5200
+    },
+
+    {
+        title:"",
+        text:"I hope this small gift<br>can become one of your memories.",
+        time:5000
+    },
+
+    {
+        title:"",
+        text:"No matter where life takes us,<br>I hope you'll always smile.",
+        time:5400
+    },
+
+    {
+        title:"",
+        text:"Once again...",
+        time:3000
+    },
+
+    {
+        title:"Happy Birthday",
+        text:"I wish all your dreams come true.",
+        time:4400
+    },
+
+    {
+        title:"♡",
+        text:"",
+        time:1800
+    }
+
+];
+
+
+let i = 0;
+
+
+function showPage(){
+
+    if(i >= pages.length) return;
+
+
+    title.innerHTML = pages[i].title;
+
+    sub.innerHTML = pages[i].text;
+
+    box.classList.add("show");
+
+
+    setTimeout(()=>{
+
+        box.classList.remove("show");
+
+        i++;
+
+
+        if(i < pages.length){
+
+            setTimeout(showPage,400);
+
+        }
+
+    }, pages[i].time);
+
+}
+
+
+/*
+    Video ending
+*/
+
+function startEndingVideo(){
+
+    // Fade hitam sudah selesai,
+    // sekarang video mulai dimainkan.
+
+    endingVideo.classList.add("show");
+
+    endingVideo.play();
+
+}
+
+
+window.onload = ()=>{
+
+    music.play();
+
+    setTimeout(showPage,800);
+
+
+    music.onended = ()=>{
+
+        // Hilangkan teks terakhir
+
+        box.classList.remove("show");
+
+
+        // Mulai fade ke hitam
+
+        fade.classList.add("show");
+
+
+        // Tunggu sampai fade selesai,
+        // lalu tampilkan video ending.
+
+        setTimeout(startEndingVideo,4000);
+
+    };
+
+};
+
+</script>
+
+</body>
+</html>
+```

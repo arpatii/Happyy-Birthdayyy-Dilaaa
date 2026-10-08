@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouquet</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background-image:url("bg bouquet.jpeg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    overflow:hidden;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+#bouquetText{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:0px;
+    width:650px;
+    max-width:90%;
+    text-align:center;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    border-radius:25px;
+    padding:10px;
+
+}
+
+#bouquetText h2{
+    font-family:"Allura", cursive;
+    font-size:30px;
+    font-weight:400;
+    color:white;
+    margin-bottom:5px;
+    text-shadow:
+        0 0 12px rgba(255,255,255,.45);
+
+}
+
+.textArea{
+    max-height:140px;
+    overflow-y:auto;
+    padding:0 10px;
+
+}
+
+.textArea p{
+    font-family:"Cormorant Garamond", serif;
+    font-size:18px;
+    line-height:1.7;
+    color:white;
+    text-align:center;
+    text-shadow:
+        0 0 8px rgba(0,0,0,.5);
+
+}
+
+.textArea::-webkit-scrollbar{
+    width:0;
+
+}
+
+button{
+    position:fixed;
+    left:35px;
+    bottom:35px;
+    padding:14px 28px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    font-size:17px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    color:white;
+    transition:.25s;
+
+}
+
+button:hover{
+    transform:scale(1.06);
+    background:rgba(255,255,255,.28);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="bouquetText">
+    <h2>A bouquet for you</h2>
+    <div class="textArea">
+        <p>
+            meheheee... sukaa gaa buketnyaa?<br>
+            kuharaapp kamuu sukaaa. maafff yaaa, akuu belumm bisaa beliin buket yang baguss. jadinyaa... akuu bikinin yang versi digital dan origaminyaa duluu hehe.<br>
+            meskii cumaa di layar dan buatan tangann, akuu bener-bener serius waktu buat buket inii. mulai dari milih bunganyaa, warnanyaa, sampai nyusun semuanya satu-satu. akuuu pengen hasilnya tetep cantik, biar bisa sedikit bikin kamu senyum pas lihatnyaaa.<br>
+            suatu saat nanti... kalau ada kesempatan, semoga aku bisa ngasih kamu buket yang baguss. bukannnn cumaaaa gambarrr di layar ataupunn kertas lipatt, tapiii bungaaaa yang indahh bisaaaa dan memikatt seperti dirimuu.<br>
+            untuk sekaranggg... anggap ajaaaa buket kecil ini jadi tanda kalauuuu ada seseorang yang selalu mendoakan kamu dari jauhhhhh.<br>
+            once again, happyyyy birthdayyy, Dilaaaaa.
+        </p>
+    </div>
+</div>
+
+<button id="backBtn">
+    ← Return to gifts
+
+</button>
+
+<script>
+
+document.getElementById("backBtn").onclick=function(){
+    window.location.href="Happyy birthdayyy.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

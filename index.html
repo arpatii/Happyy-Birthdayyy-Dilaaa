@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Youuu: Someone Speciall</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background-image:url("bg log.jpeg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:'Courier New', Courier, monospace;
+}
+
+.login{
+
+    width:350px;
+    height:350px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.login h1{
+
+    color:white;
+    font-size:38px;
+    margin-bottom:25px;
+
+    font-style:italic;
+
+    text-shadow:3px 3px 10px rgba(0,0,0,.5);
+
+}
+
+.login input{
+
+    width:240px;
+
+    padding:12px;
+
+    border:none;
+    outline:none;
+
+    border-radius:10px;
+
+    font-size:17px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.85);
+
+}
+
+.login input::placeholder{
+
+    color:#555;
+
+}
+
+.login button{
+
+    width:180px;
+
+    margin-top:20px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#4665e2;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login button:hover{
+
+    transform:scale(1.05);
+
+    background:#3550bd;
+
+}
+
+#popup{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.55);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+.popup-box{
+
+    width:350px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    animation:muncul .35s;
+
+}
+
+.popup-box h2{
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+
+    color:#4665e2;
+
+    margin-bottom:15px;
+
+}
+
+.popup-box p{
+
+    margin-bottom:20px;
+
+    font-size:17px;
+
+}
+
+.popup-box button{
+
+    width:120px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#4665e2;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+@keyframes muncul{
+
+    from{
+
+        transform:scale(.6);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login">
+
+    <h1>Your Name</h1>
+
+    <input
+        type="text"
+        id="name"
+        placeholder="Type your name...."
+    >
+
+    <button id="continueBtn" onclick="cekNama()">
+        Continue
+    </button>
+
+    <div id="popup">
+
+    <div class="popup-box">
+
+        <h2 id="popupTitle"></h2>
+
+        <p id="popupText"></p>
+
+        <button onclick="tutupPopup()">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+
+function cekNama(){
+
+    let nama = document
+        .getElementById("name")
+        .value
+        .toLowerCase()
+        .trim();
+
+    nama = nama.replace(/\s+/g," ");
+    nama = nama.replace(/a+/g,"a");
+
+    const pola = /^dila+( fadila+)?$|^fadila+$/;
+
+    if(pola.test(nama)){
+
+        document.getElementById("popupTitle").innerHTML =
+        "Welcome ❤️";
+
+        document.getElementById("popupText").innerHTML =
+        "Aku sudah menyiapkan sesuatu untukmu...";
+
+        document.getElementById("popup").style.display="flex";
+
+    }else{
+
+        document.getElementById("popupTitle").innerHTML =
+        "Oops 😢";
+
+        document.getElementById("popupText").innerHTML =
+        "Website ini hanya dibuat untuk seseorang yang spesial ❤️";
+
+        document.getElementById("popup").style.display="flex";
+
+    }
+
+}
+
+function tutupPopup(){
+
+    const title = document.getElementById("popupTitle").innerHTML;
+
+    document.getElementById("popup").style.display = "none";
+
+    if(title == "Welcome ❤️"){
+
+        window.location.href = "Loading.html";
+
+    }else{
+
+        document.getElementById("name").value = "";
+
+        document.getElementById("name").focus();
+
+    }
+
+}
+
+const input = document.getElementById("name");
+
+input.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        e.preventDefault();
+
+        document.getElementById("continueBtn").click();
+
+    }
+
+});
+</script>
+
+</body>
+</html>
